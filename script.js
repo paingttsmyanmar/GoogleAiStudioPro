@@ -1,103 +1,63 @@
-function speakText(){
+let audioFile=null;
 
-let text =
+
+function generateVoice(){
+
+
+let text=
 document.getElementById("text").value;
 
 
-let speech =
-new SpeechSynthesisUtterance(text);
+let speed=
+document.getElementById("speed").value;
 
 
-speech.lang="my-MM";
-
-speech.rate=1;
-
-speech.pitch=1;
-
-
-window.speechSynthesis.speak(
-speech
-);
-
-}
+let pitch=
+document.getElementById("pitch").value;
 
 
 
-function stopSpeak(){
+if(!text){
 
-window.speechSynthesis.cancel();
-
-}
-
-
-
-
-async function generateAI(){
-
-
-let key =
-document.getElementById("apiKey").value;
-
-
-let text =
-document.getElementById("text").value;
-
-
-
-if(!key){
-
-alert("Enter Gemini API Key");
+alert("Enter text first");
 
 return;
 
 }
 
 
+// Browser TTS Demo
 
-let response =
-await fetch(
-
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="+key,
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
+let speech =
+new SpeechSynthesisUtterance(text);
 
 
-body:JSON.stringify({
+speech.rate=speed;
 
-contents:[{
+speech.pitch=pitch;
 
-parts:[{
 
-text:text
+let voices =
+speechSynthesis.getVoices();
 
-}]
 
-}]
+speech.voice =
+voices.find(v =>
+v.name.includes("Google")
+) || voices[0];
 
-})
+
+speechSynthesis.speak(speech);
 
 
 }
 
 
+
+function downloadAudio(){
+
+alert(
+"Real MP3 download requires Google TTS API connection."
 );
 
-
-
-let data =
-await response.json();
-
-
-document.getElementById("text").value =
-data.candidates[0].content.parts[0].text;
-
-
-  }
+}
