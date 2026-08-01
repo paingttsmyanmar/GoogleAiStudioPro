@@ -7,31 +7,41 @@ font-family:Arial;
 }
 
 
-.box{
+.container{
 
 max-width:700px;
 margin:40px auto;
 background:#1e293b;
 padding:30px;
-border-radius:20px;
+border-radius:25px;
+box-shadow:0 0 30px #0ea5e9;
 
 }
 
 
 h1{
 
-color:#38bdf8;
 text-align:center;
+color:#38bdf8;
 
 }
 
 
-input,textarea{
+label{
+
+display:block;
+margin-top:15px;
+font-weight:bold;
+
+}
+
+
+input,textarea,select{
 
 width:100%;
 padding:15px;
-margin:10px 0;
-border-radius:12px;
+margin-top:8px;
+border-radius:15px;
 background:#0f172a;
 color:white;
 border:1px solid #334155;
@@ -41,19 +51,53 @@ border:1px solid #334155;
 
 textarea{
 
-height:250px;
+height:200px;
+
+}
+
+
+.row{
+
+display:flex;
+gap:20px;
+
+}
+
+
+.row div{
+
+flex:1;
 
 }
 
 
 button{
 
-padding:15px 20px;
-margin:5px;
-border:none;
-border-radius:12px;
-background:#2563eb;
+margin-top:20px;
+padding:15px 25px;
+border:0;
+border-radius:20px;
+background:linear-gradient(
+90deg,#2563eb,#06b6d4
+);
+
 color:white;
+font-size:16px;
 cursor:pointer;
+
+}
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+audio{
+
+width:100%;
+margin-top:20px;
 
 }
