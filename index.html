@@ -1,50 +1,71 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<title>Gemini TTS Tool</title>
-
+<title>Gemini Voice Studio</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+<div class="container">
 
-<div class="box">
+<h1>🎙️ Gemini Voice Studio</h1>
 
-
-<h1>🤖 Gemini Text To Speech</h1>
-
-
-<p>Google AI Studio API Key</p>
-
-<input 
-id="apiKey"
-type="password"
-placeholder="Paste Gemini API Key">
+<label>🔑 Gemini API Key</label>
+<input id="apiKey" placeholder="Paste API Key">
 
 
-<textarea 
-id="text"
-placeholder="Enter text here...">
-</textarea>
+<label>📝 Enter Text</label>
+<textarea id="text" placeholder="Write your text here..."></textarea>
 
 
-<button onclick="speakText()">
-🔊 Speak
+<div class="row">
+
+<div>
+<label>🎭 Voice</label>
+<select id="voice">
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+
+<div>
+<label>😊 Emotion</label>
+<select id="emotion">
+<option>Normal</option>
+<option>Dramatic</option>
+<option>Happy</option>
+<option>Sad</option>
+<option>Angry</option>
+</select>
+</div>
+
+</div>
+
+
+<label>⚡ Speed</label>
+<input type="range" id="speed" min="0.5" max="2" value="1" step="0.1">
+
+
+<label>🎵 Pitch</label>
+<input type="range" id="pitch" min="0.5" max="2" value="1" step="0.1">
+
+
+<button onclick="generateVoice()">
+✨ Generate Voice
 </button>
 
 
-<button onclick="stopSpeak()">
-⛔ Stop
-</button>
+<h2>🎧 Preview</h2>
+
+<audio id="player" controls></audio>
 
 
-<button onclick="generateAI()">
-✨ Gemini Improve Text
+<br>
+
+<button onclick="downloadAudio()">
+⬇ Download MP3
 </button>
 
 
@@ -53,7 +74,5 @@ placeholder="Enter text here...">
 
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
