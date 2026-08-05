@@ -2,92 +2,94 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Voice & Chat Studio</title>
+    <!-- ဖုန်းစခရင် ကွက်တိဖြစ်စေရန် အရေးကြီးသော Viewport Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gemini Voice Studio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header Section -->
+    <div class="app-container">
+        <!-- Header -->
         <header>
-            <h1><i class="fa-solid fa-wand-magic-sparkles"></i> AI Voice Studio</h1>
-            <p class="subtitle">Google AI Studio နဲ့ ချိတ်ဆက်ထားသော အသံဖန်တီးသူ</p>
+            <h1><i class="fa-solid fa-microphone-lines"></i> Gemini Voice Studio</h1>
         </header>
 
-        <!-- API Key Box -->
-        <div class="card api-section">
-            <label for="apiKey"><i class="fa-solid fa-key"></i> Google AI Studio API Key ထည့်ပါ</label>
+        <!-- API Key Input -->
+        <div class="card">
+            <label for="apiKey"><i class="fa-solid fa-key"></i> Gemini API Key</label>
             <div class="input-group">
-                <input type="password" id="apiKey" placeholder="AI Studio API Key ကို ဒီမှာ ကူးထည့်ပါ...">
+                <input type="password" id="apiKey" placeholder="Paste API Key here...">
                 <button id="toggleApiKey" type="button"><i class="fa-solid fa-eye"></i></button>
             </div>
             <a href="https://aistudio.google.com/app/apikey" target="_blank" class="api-link">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Google AI Studio မှာ API Key မရှိသေးပါက ဤနေရာတွင် ယူပါ
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Get API Key from Google AI Studio
             </a>
         </div>
 
-        <!-- Controls Section (Voice & Emotion) -->
-        <div class="card controls-section">
-            <div class="control-group">
-                <label for="voiceSelect"><i class="fa-solid fa-user"></i> အသံ အမျိုးအစား ရွေးချယ်ပါ</label>
+        <!-- Text Input -->
+        <div class="card">
+            <label for="textInput"><i class="fa-solid fa-pen-to-square"></i> Enter Text</label>
+            <textarea id="textInput" rows="3" placeholder="Write your text here..."></textarea>
+        </div>
+
+        <!-- Voice & Emotion Options -->
+        <div class="card grid-2">
+            <div>
+                <label for="voiceSelect"><i class="fa-solid fa-user-gear"></i> Voice Character</label>
                 <select id="voiceSelect">
-                    <option value="Puck">အမျိုးသား အသံ (Puck)</option>
-                    <option value="Charon">အမျိုးသား အသံ (Charon - နက်ရှိုင်းသော)</option>
-                    <option value="Kore">အမျိုးသမီး အသံ (Kore)</option>
-                    <option value="Fenrir">အမျိုးသမီး အသံ (Fenrir)</option>
-                    <option value="Aoede">အမျိုးသမီး အသံ (Aoede - ငြိမ့်ညောင်းသော)</option>
+                    <optgroup label="👨 အမျိုးသား ဇာတ်ကောင်များ">
+                        <option value="Puck">Puck (Energetic Male / တက်ကြွသော)</option>
+                        <option value="Charon">Charon (Deep Male / အသံဩဇာရှိသော)</option>
+                    </optgroup>
+                    <optgroup label="👩 အမျိုးသမီး ဇာတ်ကောင်များ">
+                        <option value="Kore">Kore (Calm Female / တည်ငြိမ်သော)</option>
+                        <option value="Fenrir">Fenrir (Expressive Female / စကားပြောပီသသော)</option>
+                        <option value="Aoede">Aoede (Soft Female / ငြိမ့်ညောင်းသော)</option>
+                    </optgroup>
                 </select>
             </div>
 
-            <div class="control-group">
-                <label for="emotionSelect"><i class="fa-solid fa-face-smile"></i> ခံစားချက် လှိုင်း ရွေးချယ်ပါ</label>
+            <div>
+                <label for="emotionSelect"><i class="fa-solid fa-face-smile"></i> Emotion Tone</label>
                 <select id="emotionSelect">
-                    <option value="neutral">ရိုးရိုး/ပုံမှန် (Neutral)</option>
-                    <option value="happy">ဝမ်းသာ/ပျော်ရွှင်သော (Happy & Cheerful)</option>
-                    <option value="sad">ဝမ်းနည်း/စိတ်မကောင်းသော (Sad & Emotional)</option>
-                    <option value="excited">စိတ်လှုပ်ရှား/တက်ကြွသော (Excited)</option>
-                    <option value="angry">ဒေါသထွက်/ပြင်းထန်သော (Angry/Intense)</option>
-                    <option value="whispering">တိုးတိုးလေးပြောသော (Whispering)</option>
+                    <option value="Normal">Normal (ပုံမှန်)</option>
+                    <option value="Happy & Cheerful">Happy (ပျော်ရွှင်သော)</option>
+                    <option value="Sad & Gentle">Sad (ဝမ်းနည်းသော)</option>
+                    <option value="Excited & Enthusiastic">Excited (စိတ်လှုပ်ရှားသော)</option>
+                    <option value="Whispering">Whispering (တိုးတိုးပြောသော)</option>
                 </select>
             </div>
         </div>
 
-        <!-- Text Input & Generate Section -->
-        <div class="card input-section">
-            <label for="textInput"><i class="fa-solid fa-pen-to-square"></i> ပြောစေချင်သည့် စာသား ရေးပါ</label>
-            <textarea id="textInput" rows="4" placeholder="ဒီမှာ စာရိုက်ပါ... (ဥပမာ- မင်္ဂလာပါ၊ ဒီနေ့ ရာသီဥတု သာယာလိုက်တာ)"></textarea>
-            
-            <button id="generateBtn" class="btn-primary">
-                <i class="fa-solid fa-play"></i> အသံ ထုတ်လုပ်မည်
-            </button>
-        </div>
+        <!-- Generate Button -->
+        <button id="generateBtn" class="btn-primary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Voice
+        </button>
 
-        <!-- Audio Player Section -->
-        <div class="card result-section" id="resultSection" style="display: none;">
-            <h3><i class="fa-solid fa-music"></i> ထွက်ရှိလာသော အသံ</h3>
+        <!-- Preview & Audio Player -->
+        <div class="card result-card" id="resultSection" style="display: none;">
+            <label><i class="fa-solid fa-headphones"></i> Preview Audio</label>
             <audio id="audioPlayer" controls></audio>
         </div>
 
-        <!-- Telegram Group Link -->
+        <!-- Telegram Link -->
         <div class="card telegram-card">
             <i class="fa-brands fa-telegram telegram-icon"></i>
-            <div>
-                <h3>သူငယ်ချင်းများ စကားပြောရန် Group</h3>
-                <p>အသေးစိတ် မေးမြန်းရန်နှင့် ဆွေးနွေးရန် Telegram သို့ ဆက်သွယ်ပါ</p>
-                <a href="https://t.me/NGAPAINGGYI" target="_blank" class="telegram-btn">
-                    <i class="fa-paper-plane"></i> @NGAPAINGGYI
-                </a>
+            <div class="telegram-info">
+                <span>သူငယ်ချင်းများ စကားပြောရန် Group</span>
+                <a href="https://t.me/NGAPAINGGYI" target="_blank">@NGAPAINGGYI</a>
             </div>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p class="credits">Powered by <span>Paing Hein Kyaw</span></p>
+            <p>Power Director by <span>Paing Hein Kyaw</span></p>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
+                                                                                                  
