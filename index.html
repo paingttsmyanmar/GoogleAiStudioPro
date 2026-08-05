@@ -2,7 +2,6 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <!-- ဖုန်းစခရင် ကွက်တိဖြစ်စေရန် အရေးကြီးသော Viewport Tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gemini Voice Studio</title>
     <link rel="stylesheet" href="style.css">
@@ -68,9 +67,9 @@
             <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Voice
         </button>
 
-        <!-- Preview & Audio Player -->
-        <div class="card result-card" id="resultSection" style="display: none;">
-            <label><i class="fa-solid fa-headphones"></i> Preview Audio</label>
+        <!-- Preview & Audio Player (အမြဲ ပေါ်နေမည်) -->
+        <div class="card result-card" id="resultSection">
+            <label><i class="fa-solid fa-headphones"></i> Audio Output (အသံထွက်မည့်နေရာ)</label>
             <audio id="audioPlayer" controls></audio>
         </div>
 
@@ -91,5 +90,4 @@
 
     <script src="script.js"></script>
 </body>
-    </html>
-                                                                                                  
+</html>
