@@ -1,99 +1,105 @@
 :root {
-    --bg-color: #070f1a;
-    --card-bg: rgba(13, 25, 48, 0.85);
+    --bg-color: #081225;
+    --card-bg: rgba(15, 28, 54, 0.9);
     --primary-cyan: #00f0ff;
-    --primary-blue: #0077ff;
-    --text-white: #f0f4f8;
+    --primary-blue: #0088ff;
+    --text-color: #f1f5f9;
     --text-dim: #94a3b8;
-    --accent-glow: 0 0 10px rgba(0, 240, 255, 0.3);
+    --border-cyan: rgba(0, 240, 255, 0.3);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     background-color: var(--bg-color);
-    background-image: radial-gradient(circle at 50% 5%, #13274f 0%, #070f1a 85%);
-    color: var(--text-white);
+    background-image: radial-gradient(circle at 50% 0%, #152a52 0%, #081225 100%);
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 15px 10px;
+    padding: 12px;
 }
 
-.container {
+/* ဖုန်းမျက်နှာပြင် အပြည့် ကွက်တိဖြစ်စေရန် 100% သတ်မှတ်ခြင်း */
+.app-container {
     width: 100%;
-    max-width: 480px; /* ဖုန်းပေါ်မှာ အလွန်ကြီးမသွားဘဲ သင့်တင့်သော အကျယ်ဖြစ်စေရန် */
+    max-width: 500px; /* PC ပေါ်မှာ ကြည့်ရင်လည်း အချိုးအစား မပျက်ပါ */
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 5px;
-}
-
 header h1 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--primary-cyan);
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-}
-
-.subtitle {
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    margin-top: 2px;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    text-align: center;
+    padding: 5px 0;
 }
 
 .card {
     background: var(--card-bg);
-    border: 1px solid rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--border-cyan);
     border-radius: 12px;
-    padding: 14px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 12px 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+@media (max-width: 380px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
 }
 
 label {
     display: block;
-    margin-bottom: 6px;
-    color: var(--primary-cyan);
+    font-size: 0.82rem;
     font-weight: 600;
-    font-size: 0.85rem;
+    color: var(--primary-cyan);
+    margin-bottom: 6px;
 }
 
 .input-group {
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
 input, select, textarea {
     width: 100%;
-    padding: 9px 12px;
-    background: rgba(3, 8, 18, 0.9);
-    border: 1px solid rgba(0, 240, 255, 0.25);
+    padding: 10px;
+    background: #040a17;
+    border: 1px solid var(--border-cyan);
     border-radius: 8px;
     color: #fff;
     font-size: 0.9rem;
     outline: none;
-    transition: all 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
     border-color: var(--primary-cyan);
-    box-shadow: var(--accent-glow);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+select optgroup {
+    background: #081225;
+    color: var(--primary-cyan);
 }
 
 #toggleApiKey {
-    width: 42px;
-    background: rgba(0, 240, 255, 0.1);
-    border: 1px solid rgba(0, 240, 255, 0.25);
+    width: 40px;
+    background: rgba(0, 240, 255, 0.15);
+    border: 1px solid var(--border-cyan);
     color: var(--primary-cyan);
     border-radius: 8px;
     cursor: pointer;
@@ -101,119 +107,74 @@ input:focus, select:focus, textarea:focus {
 
 .api-link {
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 6px;
     color: #38bdf8;
     font-size: 0.75rem;
     text-decoration: none;
-    transition: color 0.2s;
-}
-
-.api-link:hover {
-    color: var(--primary-cyan);
-    text-decoration: underline;
-}
-
-.controls-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.control-group {
-    width: 100%;
 }
 
 textarea {
     resize: none;
-    height: 80px; /* စာရိုက်တဲ့နေရာကို ဖုန်းနဲ့ကြည့်လို့ကောင်းအောင် အနေတော် သတ်မှတ်ထားသည် */
 }
 
 .btn-primary {
     width: 100%;
-    margin-top: 10px;
-    padding: 11px;
+    padding: 12px;
     background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
     border: none;
     border-radius: 8px;
-    color: #070f1a;
+    color: #040a17;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: var(--accent-glow);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
 }
 
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
-.result-section {
-    text-align: center;
-}
-
-.result-section h3 {
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-    color: var(--primary-cyan);
-}
-
-audio {
+.result-card audio {
     width: 100%;
-    height: 36px; /* ဖုန်းမှာ Audio Player ကြီးလွန်းမနေစေရန် */
-    border-radius: 20px;
+    margin-top: 5px;
+    height: 40px;
 }
 
 .telegram-card {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(135deg, rgba(0, 136, 204, 0.15), rgba(13, 25, 48, 0.85));
-    border-color: rgba(0, 136, 204, 0.3);
-    padding: 12px;
+    background: linear-gradient(135deg, rgba(0, 136, 204, 0.2), rgba(15, 28, 54, 0.9));
+    border-color: rgba(0, 136, 204, 0.4);
 }
 
 .telegram-icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #0088cc;
 }
 
-.telegram-card h3 {
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-.telegram-card p {
-    font-size: 0.75rem;
+.telegram-info span {
+    display: block;
+    font-size: 0.8rem;
     color: var(--text-dim);
-    margin-bottom: 6px;
 }
 
-.telegram-btn {
-    display: inline-block;
-    padding: 4px 10px;
-    background: #0088cc;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+.telegram-info a {
+    color: #38bdf8;
     font-weight: bold;
-    font-size: 0.75rem;
-    box-shadow: 0 0 8px rgba(0, 136, 204, 0.4);
+    font-size: 0.9rem;
+    text-decoration: none;
 }
 
 footer {
     text-align: center;
     padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.credits {
     font-size: 0.8rem;
     color: var(--text-dim);
 }
 
-.credits span {
+footer span {
     color: var(--primary-cyan);
     font-weight: bold;
-    text-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
-  }
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
