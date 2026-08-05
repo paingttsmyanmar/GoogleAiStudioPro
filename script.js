@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generateBtn');
     const audioPlayer = document.getElementById('audioPlayer');
 
-    // Toggle API Key view
     toggleApiKeyBtn.addEventListener('click', () => {
         const type = apiKeyInput.getAttribute('type') === 'password' ? 'text' : 'password';
         apiKeyInput.setAttribute('type', type);
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             : '<i class="fa-solid fa-eye-slash"></i>';
     });
 
-    // Generate Audio Function
     generateBtn.addEventListener('click', async () => {
         const apiKey = apiKeyInput.value.trim();
         const text = textInput.value.trim();
@@ -37,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
 
         try {
-            const promptText = `Please read the following text in ${emotion} tone: "${text}"`;
+            const promptText = `Say this text in ${emotion} emotion tone: "${text}"`;
 
-            // Gemini API 2.0 / 1.5 Flash Audio Request Format
+            // Gemini REST API Audio Config
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
                 method: 'POST',
                 headers: {
@@ -69,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const part = data.candidates?.[0]?.content?.parts?.[0];
-            const inlineData = part?.inlineData;
+            const candidate = data.candidates?.[0];
+            const inlineData = candidate?.content?.parts?.[0]?.inlineData;
 
             if (inlineData && inlineData.data) {
                 const mimeType = inlineData.mimeType || 'audio/mp3';
@@ -89,4 +87,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-                
