@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="my">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -19,20 +21,27 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
+
 
 <body>
 
 <div class="app-container">
 
-    <!-- PROMOTION -->
+
+    <!-- ===================================== -->
+    <!-- TELEGRAM PROMOTION CARD ONLY -->
+    <!-- ===================================== -->
+
     <section class="promo-card">
 
         <div class="promo-icon">
             🎙️
         </div>
 
-        <div>
+        <div class="promo-content">
+
             <h1>
                 AI Voice Studio
             </h1>
@@ -49,637 +58,614 @@
             >
                 @trollmovi123 ကို ဆက်သွယ်ပါ
             </a>
+
         </div>
 
     </section>
 
 
-    <!-- ========================= -->
-    <!-- HOME PAGE -->
-    <!-- ========================= -->
 
-    <main
-        id="homePage"
-        class="home-page"
-    >
+    <!-- ===================================== -->
+    <!-- STUDIO HEADER -->
+    <!-- ===================================== -->
 
-        <button
-            id="openStudioBtn"
-            class="main-card"
-            type="button"
-        >
+    <header class="studio-header">
 
-            <div class="main-icon">
-                🎙️
-            </div>
+        <div>
 
             <h2>
-                AI Voice Studio
+                🎙️ AI Voice Generator
             </h2>
 
             <p>
-                Gemini AI ဖြင့် စာသားကို အသံပြောင်းရန်
+                Google Gemini Text-to-Speech
             </p>
 
-            <span class="enter-button">
-                Open Studio →
+        </div>
+
+        <span class="ai-badge">
+            Gemini TTS
+        </span>
+
+    </header>
+
+
+
+    <!-- ===================================== -->
+    <!-- API KEY -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
+
+            <div>
+                🔑 Gemini API Key
+            </div>
+
+            <span
+                id="keyStatusBadge"
+                class="status-badge neutral"
+            >
+                Not Set
+            </span>
+
+        </div>
+
+
+        <div class="api-input-wrapper">
+
+            <input
+                id="apiKey"
+                type="password"
+                placeholder="Gemini API Key ထည့်ပါ..."
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <button
+                id="toggleKeyBtn"
+                class="show-key-button"
+                type="button"
+                aria-label="Show or hide API key"
+            >
+                👁
+            </button>
+
+        </div>
+
+
+        <label class="save-option">
+
+            <input
+                id="rememberKey"
+                type="checkbox"
+            >
+
+            <span>
+                ဒီ Browser ထဲမှာ API Key ကို Save ထားမယ်
+            </span>
+
+        </label>
+
+
+        <p class="helper-text">
+            Save မရွေးထားရင် Browser ထဲမှာ အမြဲတမ်းမသိမ်းထားပါ။
+            လိုချင်တဲ့အချိန် Key ပြောင်းနိုင်၊ ဖျက်နိုင်ပါတယ်။
+        </p>
+
+
+        <div class="button-grid">
+
+            <button
+                id="saveKeyBtn"
+                class="control-button"
+                type="button"
+            >
+                💾 Save
+            </button>
+
+
+            <button
+                id="testKeyBtn"
+                class="control-button"
+                type="button"
+            >
+                ⚡ Test Key
+            </button>
+
+
+            <button
+                id="changeKeyBtn"
+                class="control-button"
+                type="button"
+            >
+                ✏️ Change
+            </button>
+
+
+            <button
+                id="removeKeyBtn"
+                class="danger-button"
+                type="button"
+            >
+                🗑 Remove
+            </button>
+
+        </div>
+
+
+        <div class="security-note">
+            🔒 API Key ကို Website Code ထဲမှာ ထည့်သိမ်းထားခြင်းမရှိပါ။
+        </div>
+
+    </section>
+
+
+
+    <!-- DIVIDER -->
+
+    <div class="divider"></div>
+
+
+
+    <!-- ===================================== -->
+    <!-- VOICE SELECT -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
+
+            <div>
+                🎭 Voice Character
+            </div>
+
+            <span class="small-badge">
+                30 Voices
+            </span>
+
+        </div>
+
+
+        <label
+            class="field-label"
+            for="voiceSelect"
+        >
+            Gemini Voice ရွေးပါ
+        </label>
+
+
+        <select id="voiceSelect">
+        </select>
+
+
+        <div class="selected-voice">
+
+            <div class="voice-icon">
+                🎙️
+            </div>
+
+            <div>
+
+                <span class="mini-label">
+                    Selected Voice
+                </span>
+
+                <strong id="selectedVoiceName">
+                    Zephyr
+                </strong>
+
+                <span id="selectedVoiceStyle">
+                    Bright
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="divider"></div>
+
+
+
+    <!-- ===================================== -->
+    <!-- EMOTION -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
+            🎭 Voice Emotion
+        </div>
+
+
+        <label
+            class="field-label"
+            for="emotionSelect"
+        >
+            ခံစားချက် / ပြောဆိုပုံ
+        </label>
+
+
+        <select id="emotionSelect">
+
+            <option value="natural">
+                🎙 Natural
+            </option>
+
+            <option value="happy">
+                😊 Happy
+            </option>
+
+            <option value="excited">
+                🤩 Excited
+            </option>
+
+            <option value="calm">
+                😌 Calm
+            </option>
+
+            <option value="serious">
+                🧐 Serious
+            </option>
+
+            <option value="dramatic">
+                🎬 Dramatic
+            </option>
+
+            <option value="sad">
+                😢 Sad
+            </option>
+
+            <option value="angry">
+                😠 Angry
+            </option>
+
+            <option value="friendly">
+                🤝 Friendly
+            </option>
+
+            <option value="news">
+                📰 News Narrator
+            </option>
+
+            <option value="story">
+                📖 Storytelling
+            </option>
+
+            <option value="whisper">
+                🤫 Whisper
+            </option>
+
+        </select>
+
+    </section>
+
+
+
+    <div class="divider"></div>
+
+
+
+    <!-- ===================================== -->
+    <!-- ADVANCED SETTINGS -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
+            ⚙️ Advanced Settings
+        </div>
+
+
+        <div class="settings-grid">
+
+
+            <!-- SPEED -->
+
+            <div>
+
+                <label
+                    class="field-label"
+                    for="speedSelect"
+                >
+                    Voice Speed
+                </label>
+
+
+                <select id="speedSelect">
+
+                    <option value="0.5">
+                        0.5x — Very Slow
+                    </option>
+
+                    <option value="0.75">
+                        0.75x — Slow
+                    </option>
+
+                    <option
+                        value="1"
+                        selected
+                    >
+                        1x — Normal
+                    </option>
+
+                    <option value="1.25">
+                        1.25x — Faster
+                    </option>
+
+                    <option value="1.5">
+                        1.5x — Fast
+                    </option>
+
+                    <option value="2">
+                        2x — Very Fast
+                    </option>
+
+                    <option value="3">
+                        3x — Extreme
+                    </option>
+
+                    <option value="4">
+                        4x — Maximum
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- VOLUME -->
+
+            <div>
+
+                <div class="range-header">
+
+                    <label
+                        class="field-label"
+                        for="volumeSlider"
+                    >
+                        Player Volume
+                    </label>
+
+                    <span id="volumeValue">
+                        100%
+                    </span>
+
+                </div>
+
+
+                <input
+                    id="volumeSlider"
+                    class="range-slider"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="100"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="divider"></div>
+
+
+
+    <!-- ===================================== -->
+    <!-- TEXT -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
+
+            <div>
+                ✍️ Voice Script
+            </div>
+
+            <span id="characterCount">
+                0 characters
+            </span>
+
+        </div>
+
+
+        <textarea
+            id="voiceText"
+            placeholder="အသံထုတ်ချင်တဲ့ စာသားကို ဒီနေရာမှာ ရေးပါ..."
+            spellcheck="false"
+        ></textarea>
+
+
+        <button
+            id="generateBtn"
+            class="generate-button"
+            type="button"
+        >
+
+            <span id="generateIcon">
+                ✨
+            </span>
+
+            <span id="generateText">
+                Generate Voice
             </span>
 
         </button>
 
-    </main>
+    </section>
 
 
-    <!-- ========================= -->
-    <!-- VOICE STUDIO -->
-    <!-- ========================= -->
 
-    <main
-        id="studioPage"
-        class="studio-page hidden"
-    >
+    <div class="divider"></div>
 
-        <!-- HEADER -->
 
-        <div class="studio-header">
 
-            <button
-                id="backBtn"
-                class="icon-button"
-                type="button"
-            >
-                ←
-            </button>
+    <!-- ===================================== -->
+    <!-- PROCESS STATUS -->
+    <!-- ===================================== -->
+
+    <section class="studio-section">
+
+        <div class="section-title">
 
             <div>
-                <h2>
-                    AI Voice Studio
-                </h2>
-
-                <p>
-                    Gemini TTS
-                </p>
+                📡 လုပ်ဆောင်ချက်အခြေအနေ
             </div>
 
-            <div class="live-badge">
-                AI
+            <span
+                id="processBadge"
+                class="status-badge neutral"
+            >
+                Ready
+            </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                id="progressBar"
+                class="progress-bar"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="statusHeadline"
+            class="status-headline"
+            aria-live="polite"
+        >
+            Generate Voice နှိပ်ရန် အသင့်ဖြစ်နေပါပြီ။
+        </div>
+
+
+        <div class="log-title">
+            Process Log
+        </div>
+
+
+        <ul
+            id="statusLog"
+            class="status-log"
+            aria-live="polite"
+        >
+
+            <li class="info-log">
+                ℹ️ System Ready
+            </li>
+
+        </ul>
+
+    </section>
+
+
+
+    <!-- ===================================== -->
+    <!-- AUDIO OUTPUT -->
+    <!-- ===================================== -->
+
+    <section
+        id="audioOutput"
+        class="audio-output hidden"
+    >
+
+        <div class="divider"></div>
+
+
+        <div class="section-title">
+
+            <div>
+                🎧 Generated Audio
+            </div>
+
+            <span class="status-badge success">
+                Ready
+            </span>
+
+        </div>
+
+
+        <div class="audio-details">
+
+            <div>
+
+                <span>
+                    Voice
+                </span>
+
+                <strong id="outputVoice">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Style
+                </span>
+
+                <strong id="outputEmotion">
+                    -
+                </strong>
+
             </div>
 
         </div>
 
 
-        <!-- ========================= -->
-        <!-- API KEY -->
-        <!-- ========================= -->
+        <!-- WAVEFORM -->
 
-        <section class="section-card">
+        <div class="wave-container">
 
-            <div class="section-title">
+            <canvas
+                id="waveform"
+                height="110"
+            ></canvas>
 
-                <div>
-                    <span class="section-icon">
-                        🔑
-                    </span>
+        </div>
 
-                    Gemini API Key
-                </div>
 
-                <span
-                    id="keyStatusBadge"
-                    class="status-badge neutral"
-                >
-                    Not Set
-                </span>
+        <!-- PLAYER -->
 
-            </div>
-
-
-            <div class="api-input-wrapper">
-
-                <input
-                    id="apiKey"
-                    type="password"
-                    placeholder="Gemini API Key ထည့်ပါ..."
-                    autocomplete="off"
-                    spellcheck="false"
-                >
-
-                <button
-                    id="toggleKeyBtn"
-                    type="button"
-                    class="show-key-button"
-                >
-                    👁
-                </button>
-
-            </div>
-
-
-            <label class="save-option">
-
-                <input
-                    id="rememberKey"
-                    type="checkbox"
-                >
-
-                <span>
-                    ဒီ Browser ထဲမှာ API Key ကို Save ထားမယ်
-                </span>
-
-            </label>
-
-
-            <p class="helper-text">
-                Save မရွေးထားရင် Page Reload လုပ်ပြီးတာနဲ့ Key မကျန်ပါ။
-            </p>
-
-
-            <div class="button-grid">
-
-                <button
-                    id="saveKeyBtn"
-                    class="secondary-button"
-                    type="button"
-                >
-                    💾 Save
-                </button>
-
-                <button
-                    id="testKeyBtn"
-                    class="secondary-button"
-                    type="button"
-                >
-                    ⚡ Test Key
-                </button>
-
-                <button
-                    id="changeKeyBtn"
-                    class="secondary-button"
-                    type="button"
-                >
-                    ✏️ Change
-                </button>
-
-                <button
-                    id="removeKeyBtn"
-                    class="danger-button"
-                    type="button"
-                >
-                    🗑 Remove
-                </button>
-
-            </div>
-
-
-            <div class="security-note">
-                🔒 API Key ကို GitHub Code ထဲမှာ Hard-code မလုပ်ထားပါ။
-            </div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- VOICE SELECT -->
-        <!-- ========================= -->
-
-        <section class="section-card">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        🎭
-                    </span>
-
-                    Voice Character
-                </div>
-
-                <span class="small-badge">
-                    30 Voices
-                </span>
-
-            </div>
-
-
-            <label
-                class="field-label"
-                for="voiceSelect"
-            >
-                Select Gemini Voice
-            </label>
-
-
-            <select id="voiceSelect">
-
-                <!--
-                Voice options ကို
-                script.js ကနေ Auto ထည့်မယ်
-                -->
-
-            </select>
-
-
-            <div
-                id="voiceInfo"
-                class="voice-info"
-            >
-
-                <div class="voice-avatar">
-                    🎙
-                </div>
-
-                <div>
-                    <strong id="selectedVoiceName">
-                        Zephyr
-                    </strong>
-
-                    <span id="selectedVoiceStyle">
-                        Bright
-                    </span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- EMOTION -->
-        <!-- ========================= -->
-
-        <section class="section-card">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        🎭
-                    </span>
-
-                    Voice Emotion
-                </div>
-
-            </div>
-
-
-            <label
-                class="field-label"
-                for="emotionSelect"
-            >
-                Emotion / Style
-            </label>
-
-
-            <select id="emotionSelect">
-
-                <option value="natural">
-                    🎙 Natural
-                </option>
-
-                <option value="happy">
-                    😊 Happy
-                </option>
-
-                <option value="excited">
-                    🤩 Excited
-                </option>
-
-                <option value="calm">
-                    😌 Calm
-                </option>
-
-                <option value="serious">
-                    🧐 Serious
-                </option>
-
-                <option value="dramatic">
-                    🎬 Dramatic
-                </option>
-
-                <option value="sad">
-                    😢 Sad
-                </option>
-
-                <option value="angry">
-                    😠 Angry
-                </option>
-
-                <option value="friendly">
-                    🤝 Friendly
-                </option>
-
-                <option value="news">
-                    📰 News Narrator
-                </option>
-
-                <option value="story">
-                    📖 Storytelling
-                </option>
-
-                <option value="whisper">
-                    🤫 Whisper
-                </option>
-
-            </select>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- ADVANCED SETTINGS -->
-        <!-- ========================= -->
-
-        <section class="section-card">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        ⚙️
-                    </span>
-
-                    Advanced Settings
-                </div>
-
-            </div>
-
-
-            <div class="settings-grid">
-
-                <div>
-
-                    <label
-                        class="field-label"
-                        for="speedSelect"
-                    >
-                        Voice Pace
-                    </label>
-
-                    <select id="speedSelect">
-
-                        <option value="0.5">
-                            0.5x — Very Slow
-                        </option>
-
-                        <option value="0.75">
-                            0.75x — Slow
-                        </option>
-
-                        <option
-                            value="1"
-                            selected
-                        >
-                            1x — Normal
-                        </option>
-
-                        <option value="1.25">
-                            1.25x — Faster
-                        </option>
-
-                        <option value="1.5">
-                            1.5x — Fast
-                        </option>
-
-                        <option value="2">
-                            2x — Very Fast
-                        </option>
-
-                        <option value="3">
-                            3x — Extreme
-                        </option>
-
-                        <option value="4">
-                            4x — Maximum
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div>
-
-                    <div class="range-header">
-
-                        <label
-                            class="field-label"
-                            for="volumeSlider"
-                        >
-                            Player Volume
-                        </label>
-
-                        <span id="volumeValue">
-                            100%
-                        </span>
-
-                    </div>
-
-
-                    <input
-                        id="volumeSlider"
-                        class="range-slider"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value="100"
-                    >
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- TEXT -->
-        <!-- ========================= -->
-
-        <section class="section-card">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        ✍️
-                    </span>
-
-                    Voice Script
-                </div>
-
-                <span id="characterCount">
-                    0 characters
-                </span>
-
-            </div>
-
-
-            <textarea
-                id="voiceText"
-                placeholder="အသံထုတ်ချင်တဲ့ စာသားကို ဒီနေရာမှာ ရေးပါ..."
-                spellcheck="false"
-            ></textarea>
-
-
-            <button
-                id="generateBtn"
-                class="generate-button"
-                type="button"
-            >
-
-                <span id="generateIcon">
-                    ✨
-                </span>
-
-                <span id="generateText">
-                    Generate Voice
-                </span>
-
-            </button>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- STATUS -->
-        <!-- ========================= -->
-
-        <section class="section-card">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        📡
-                    </span>
-
-                    Processing Status
-                </div>
-
-                <span
-                    id="processBadge"
-                    class="status-badge neutral"
-                >
-                    Ready
-                </span>
-
-            </div>
-
-
-            <div class="progress-track">
-
-                <div
-                    id="progressBar"
-                    class="progress-bar"
-                ></div>
-
-            </div>
-
-
-            <div
-                id="statusHeadline"
-                class="status-headline"
-            >
-                Generate Voice နှိပ်ရန် အသင့်ဖြစ်နေပါပြီ။
-            </div>
-
-
-            <ul
-                id="statusLog"
-                class="status-log"
-            >
-                <li class="info-log">
-                    ℹ️ System Ready
-                </li>
-            </ul>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- AUDIO OUTPUT -->
-        <!-- ========================= -->
-
-        <section
-            id="audioOutput"
-            class="section-card hidden"
+        <audio
+            id="audioPlayer"
+            controls
+            preload="metadata"
         >
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-icon">
-                        🎧
-                    </span>
-
-                    Generated Audio
-                </div>
-
-                <span class="status-badge success">
-                    Ready
-                </span>
-
-            </div>
+        </audio>
 
 
-            <div class="audio-details">
+        <!-- DOWNLOAD -->
 
-                <div>
-                    Voice
-                    <strong id="outputVoice">
-                        -
-                    </strong>
-                </div>
+        <a
+            id="downloadBtn"
+            class="download-button"
+            href="#"
+            download="gemini-voice.wav"
+        >
+            ⬇️ Download Audio
+        </a>
 
-                <div>
-                    Style
-                    <strong id="outputEmotion">
-                        -
-                    </strong>
-                </div>
-
-            </div>
+    </section>
 
 
-            <div class="wave-container">
+    <div class="bottom-space"></div>
 
-                <canvas
-                    id="waveform"
-                    height="110"
-                ></canvas>
-
-            </div>
-
-
-            <audio
-                id="audioPlayer"
-                controls
-                preload="metadata"
-            >
-            </audio>
-
-
-            <a
-                id="downloadBtn"
-                class="download-button"
-                href="#"
-                download="gemini-voice.wav"
-            >
-                ⬇️ Download Audio
-            </a>
-
-        </section>
-
-
-        <div class="bottom-space"></div>
-
-    </main>
 
 </div>
 
@@ -687,4 +673,5 @@
 <script src="script.js"></script>
 
 </body>
-  </html>
+
+    </html>
