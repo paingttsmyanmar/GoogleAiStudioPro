@@ -1,7 +1,8 @@
-// =============================================
+// ======================================================
 // AI VOICE STUDIO
-// Gemini TTS - GitHub Pages Frontend
-// =============================================
+// Google Gemini 3.1 Flash TTS
+// Frontend / GitHub Pages
+// ======================================================
 
 
 const MODEL =
@@ -13,12 +14,12 @@ const API_BASE =
 
 
 const STORAGE_KEY =
-    "my_gemini_api_key";
+    "gemini_voice_studio_api_key";
 
 
-// =============================================
-// ALL GEMINI TTS VOICES - 30
-// =============================================
+// ======================================================
+// GEMINI TTS VOICES - ALL 30
+// ======================================================
 
 const VOICES = [
 
@@ -175,127 +176,199 @@ const VOICES = [
 ];
 
 
-// =============================================
+// ======================================================
 // ELEMENTS
-// =============================================
-
-const homePage =
-    document.getElementById("homePage");
-
-const studioPage =
-    document.getElementById("studioPage");
-
-const openStudioBtn =
-    document.getElementById("openStudioBtn");
-
-const backBtn =
-    document.getElementById("backBtn");
+// ======================================================
 
 
 const apiKeyInput =
-    document.getElementById("apiKey");
+    document.getElementById(
+        "apiKey"
+    );
+
 
 const rememberKey =
-    document.getElementById("rememberKey");
+    document.getElementById(
+        "rememberKey"
+    );
+
 
 const saveKeyBtn =
-    document.getElementById("saveKeyBtn");
+    document.getElementById(
+        "saveKeyBtn"
+    );
+
 
 const testKeyBtn =
-    document.getElementById("testKeyBtn");
+    document.getElementById(
+        "testKeyBtn"
+    );
+
 
 const changeKeyBtn =
-    document.getElementById("changeKeyBtn");
+    document.getElementById(
+        "changeKeyBtn"
+    );
+
 
 const removeKeyBtn =
-    document.getElementById("removeKeyBtn");
+    document.getElementById(
+        "removeKeyBtn"
+    );
+
 
 const toggleKeyBtn =
-    document.getElementById("toggleKeyBtn");
+    document.getElementById(
+        "toggleKeyBtn"
+    );
+
 
 const keyStatusBadge =
-    document.getElementById("keyStatusBadge");
+    document.getElementById(
+        "keyStatusBadge"
+    );
 
 
 const voiceSelect =
-    document.getElementById("voiceSelect");
+    document.getElementById(
+        "voiceSelect"
+    );
+
 
 const selectedVoiceName =
-    document.getElementById("selectedVoiceName");
+    document.getElementById(
+        "selectedVoiceName"
+    );
+
 
 const selectedVoiceStyle =
-    document.getElementById("selectedVoiceStyle");
+    document.getElementById(
+        "selectedVoiceStyle"
+    );
 
 
 const emotionSelect =
-    document.getElementById("emotionSelect");
+    document.getElementById(
+        "emotionSelect"
+    );
+
 
 const speedSelect =
-    document.getElementById("speedSelect");
+    document.getElementById(
+        "speedSelect"
+    );
 
 
 const volumeSlider =
-    document.getElementById("volumeSlider");
+    document.getElementById(
+        "volumeSlider"
+    );
+
 
 const volumeValue =
-    document.getElementById("volumeValue");
+    document.getElementById(
+        "volumeValue"
+    );
 
 
 const voiceText =
-    document.getElementById("voiceText");
+    document.getElementById(
+        "voiceText"
+    );
+
 
 const characterCount =
-    document.getElementById("characterCount");
+    document.getElementById(
+        "characterCount"
+    );
 
 
 const generateBtn =
-    document.getElementById("generateBtn");
+    document.getElementById(
+        "generateBtn"
+    );
 
-const generateText =
-    document.getElementById("generateText");
 
 const generateIcon =
-    document.getElementById("generateIcon");
+    document.getElementById(
+        "generateIcon"
+    );
+
+
+const generateText =
+    document.getElementById(
+        "generateText"
+    );
 
 
 const processBadge =
-    document.getElementById("processBadge");
+    document.getElementById(
+        "processBadge"
+    );
+
 
 const progressBar =
-    document.getElementById("progressBar");
+    document.getElementById(
+        "progressBar"
+    );
+
 
 const statusHeadline =
-    document.getElementById("statusHeadline");
+    document.getElementById(
+        "statusHeadline"
+    );
+
 
 const statusLog =
-    document.getElementById("statusLog");
+    document.getElementById(
+        "statusLog"
+    );
 
 
 const audioOutput =
-    document.getElementById("audioOutput");
+    document.getElementById(
+        "audioOutput"
+    );
+
 
 const audioPlayer =
-    document.getElementById("audioPlayer");
+    document.getElementById(
+        "audioPlayer"
+    );
+
 
 const waveform =
-    document.getElementById("waveform");
+    document.getElementById(
+        "waveform"
+    );
+
 
 const downloadBtn =
-    document.getElementById("downloadBtn");
+    document.getElementById(
+        "downloadBtn"
+    );
+
 
 const outputVoice =
-    document.getElementById("outputVoice");
+    document.getElementById(
+        "outputVoice"
+    );
+
 
 const outputEmotion =
-    document.getElementById("outputEmotion");
+    document.getElementById(
+        "outputEmotion"
+    );
 
 
-let currentAudioURL = null;
+let currentAudioURL =
+    null;
 
 
-// =============================================
-// INITIALIZATION
-// =============================================
+// ======================================================
+// START APP
+// ======================================================
+
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -311,68 +384,39 @@ document.addEventListener(
 
         updateVolume();
 
-    }
-);
-
-
-// =============================================
-// PAGE NAVIGATION
-// =============================================
-
-openStudioBtn.addEventListener(
-    "click",
-    () => {
-
-        homePage.classList.add("hidden");
-
-        studioPage.classList.remove("hidden");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        resetStatus();
 
     }
 );
 
 
-backBtn.addEventListener(
-    "click",
-    () => {
+// ======================================================
+// VOICE SELECT
+// ======================================================
 
-        studioPage.classList.add("hidden");
-
-        homePage.classList.remove("hidden");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-);
-
-
-// =============================================
-// POPULATE VOICES
-// =============================================
 
 function populateVoices(){
 
-    voiceSelect.innerHTML = "";
+    voiceSelect.innerHTML =
+        "";
 
 
     VOICES.forEach(
         voice => {
 
             const option =
-                document.createElement("option");
+                document.createElement(
+                    "option"
+                );
+
 
             option.value =
                 voice.name;
 
+
             option.textContent =
                 `${voice.name} — ${voice.style}`;
+
 
             option.dataset.style =
                 voice.style;
@@ -390,22 +434,41 @@ function populateVoices(){
 
 voiceSelect.addEventListener(
     "change",
-    updateVoiceInfo
+    () => {
+
+        updateVoiceInfo();
+
+
+        const voice =
+            voiceSelect.value;
+
+
+        addLog(
+            `🎙 Voice selected: ${voice}`,
+            "info"
+        );
+
+    }
 );
 
 
 function updateVoiceInfo(){
 
     const selected =
-        voiceSelect.selectedOptions[0];
+        voiceSelect
+        .selectedOptions[0];
+
 
     if(!selected){
+
         return;
+
     }
 
 
     selectedVoiceName.textContent =
         selected.value;
+
 
     selectedVoiceStyle.textContent =
         selected.dataset.style || "";
@@ -413,9 +476,10 @@ function updateVoiceInfo(){
 }
 
 
-// =============================================
-// API KEY SYSTEM
-// =============================================
+// ======================================================
+// API KEY LOAD
+// ======================================================
+
 
 function loadSavedKey(){
 
@@ -430,17 +494,30 @@ function loadSavedKey(){
         apiKeyInput.value =
             savedKey;
 
+
         rememberKey.checked =
             true;
+
 
         setKeyStatus(
             "Saved",
             "success"
         );
 
+
+        addLog(
+            "✅ Saved API Key loaded from browser.",
+            "success"
+        );
+
     }
 
 }
+
+
+// ======================================================
+// SAVE API KEY
+// ======================================================
 
 
 saveKeyBtn.addEventListener(
@@ -462,24 +539,20 @@ function saveApiKey(){
             "error"
         );
 
-        resetStatus();
 
-        setProcessStatus(
-            "API Key မထည့်ရသေးပါ။",
-            "error"
+        showError(
+            "API Key မထည့်ရသေးပါ။"
         );
 
-        addLog(
-            "❌ Gemini API Key ထည့်ပါ။",
-            "error"
-        );
 
         return;
 
     }
 
 
-    if(rememberKey.checked){
+    if(
+        rememberKey.checked
+    ){
 
         localStorage.setItem(
             STORAGE_KEY,
@@ -494,13 +567,13 @@ function saveApiKey(){
 
 
         setProcessStatus(
-            "API Key ကို Browser ထဲမှာ Save လုပ်ပြီးပါပြီ။",
+            "API Key ကို ဒီ Browser ထဲမှာ Save လုပ်ပြီးပါပြီ။",
             "success"
         );
 
 
         addLog(
-            "✅ API Key saved in this browser.",
+            "✅ API Key saved in browser.",
             "success"
         );
 
@@ -514,19 +587,19 @@ function saveApiKey(){
 
 
         setKeyStatus(
-            "Session",
+            "Active",
             "success"
         );
 
 
         setProcessStatus(
-            "API Key ကို Save မလုပ်ဘဲ အသုံးပြုနေပါသည်။",
+            "API Key အလုပ်လုပ်ရန် အသင့်ဖြစ်နေပါပြီ။ Browser ထဲမှာ Save မလုပ်ထားပါ။",
             "success"
         );
 
 
         addLog(
-            "✅ API Key is active but not saved.",
+            "✅ API Key active — not permanently saved.",
             "success"
         );
 
@@ -535,9 +608,143 @@ function saveApiKey(){
 }
 
 
-// =============================================
-// TEST KEY
-// =============================================
+// ======================================================
+// SHOW / HIDE KEY
+// ======================================================
+
+
+toggleKeyBtn.addEventListener(
+    "click",
+    () => {
+
+        if(
+            apiKeyInput.type
+            ===
+            "password"
+        ){
+
+            apiKeyInput.type =
+                "text";
+
+
+            toggleKeyBtn.textContent =
+                "🙈";
+
+        }
+
+        else{
+
+            apiKeyInput.type =
+                "password";
+
+
+            toggleKeyBtn.textContent =
+                "👁";
+
+        }
+
+    }
+);
+
+
+// ======================================================
+// CHANGE KEY
+// ======================================================
+
+
+changeKeyBtn.addEventListener(
+    "click",
+    () => {
+
+        apiKeyInput.type =
+            "text";
+
+
+        apiKeyInput.focus();
+
+
+        apiKeyInput.select();
+
+
+        setKeyStatus(
+            "Editing",
+            "loading"
+        );
+
+
+        setProcessStatus(
+            "API Key အသစ်ကို ထည့်ပြီး Save သို့မဟုတ် Test Key နှိပ်ပါ။",
+            "info"
+        );
+
+
+        addLog(
+            "✏️ API Key editing mode.",
+            "info"
+        );
+
+    }
+);
+
+
+// ======================================================
+// REMOVE KEY
+// ======================================================
+
+
+removeKeyBtn.addEventListener(
+    "click",
+    () => {
+
+        localStorage.removeItem(
+            STORAGE_KEY
+        );
+
+
+        apiKeyInput.value =
+            "";
+
+
+        rememberKey.checked =
+            false;
+
+
+        apiKeyInput.type =
+            "password";
+
+
+        toggleKeyBtn.textContent =
+            "👁";
+
+
+        setKeyStatus(
+            "Removed",
+            "error"
+        );
+
+
+        resetStatus();
+
+
+        setProcessStatus(
+            "API Key ကို Browser မှ ဖယ်ရှားပြီးပါပြီ။",
+            "success"
+        );
+
+
+        addLog(
+            "🗑 Saved API Key removed.",
+            "success"
+        );
+
+    }
+);
+
+
+// ======================================================
+// TEST API KEY
+// ======================================================
+
 
 testKeyBtn.addEventListener(
     "click",
@@ -558,54 +765,81 @@ async function testApiKey(){
             "error"
         );
 
-        setProcessStatus(
-            "API Key ထည့်ပြီးမှ Test လုပ်ပါ။",
-            "error"
+
+        showError(
+            "API Key ထည့်ပြီးမှ Test လုပ်ပါ။"
         );
+
 
         return;
 
     }
 
 
-    testKeyBtn.disabled = true;
-
-    setKeyStatus(
-        "Testing...",
-        "loading"
-    );
+    testKeyBtn.disabled =
+        true;
 
 
     resetStatus();
 
+
+    setKeyStatus(
+        "Testing",
+        "loading"
+    );
+
+
+    setProcessBadge(
+        "Testing",
+        "loading"
+    );
+
+
     setProgress(
-        25,
-        "API Key စမ်းသပ်နေပါသည်..."
+        15,
+        "API Key စစ်ဆေးနေပါသည်..."
     );
 
 
     addLog(
-        "⏳ Connecting to Gemini API...",
+        "⏳ Connecting to Google Gemini API...",
         "info"
     );
 
 
     try{
 
+        setProgress(
+            40,
+            "Gemini Server ကို ချိတ်ဆက်နေပါသည်..."
+        );
+
+
         const response =
             await fetch(
+
                 `${API_BASE}/models/${MODEL}`,
+
                 {
-                    method: "GET",
+
+                    method:
+                        "GET",
 
                     headers: {
-                        "x-goog-api-key": key
+
+                        "x-goog-api-key":
+                            key
+
                     }
+
                 }
+
             );
 
 
-        if(!response.ok){
+        if(
+            !response.ok
+        ){
 
             throw await createApiError(
                 response
@@ -637,6 +871,12 @@ async function testApiKey(){
             "success"
         );
 
+
+        addLog(
+            `✅ Model ready: ${MODEL}`,
+            "success"
+        );
+
     }
 
     catch(error){
@@ -663,119 +903,10 @@ async function testApiKey(){
 }
 
 
-// =============================================
-// CHANGE KEY
-// =============================================
-
-changeKeyBtn.addEventListener(
-    "click",
-    () => {
-
-        apiKeyInput.type =
-            "text";
-
-        apiKeyInput.focus();
-
-        apiKeyInput.select();
-
-
-        setKeyStatus(
-            "Editing",
-            "loading"
-        );
-
-
-        setProcessStatus(
-            "API Key အသစ်ကို ရိုက်ထည့်နိုင်ပါပြီ။",
-            "info"
-        );
-
-    }
-);
-
-
-// =============================================
-// REMOVE KEY
-// =============================================
-
-removeKeyBtn.addEventListener(
-    "click",
-    () => {
-
-        localStorage.removeItem(
-            STORAGE_KEY
-        );
-
-
-        apiKeyInput.value = "";
-
-        rememberKey.checked =
-            false;
-
-
-        setKeyStatus(
-            "Removed",
-            "error"
-        );
-
-
-        resetStatus();
-
-
-        setProcessStatus(
-            "API Key ကို ဖယ်ရှားပြီးပါပြီ။",
-            "success"
-        );
-
-
-        addLog(
-            "✅ Saved API Key removed.",
-            "success"
-        );
-
-    }
-);
-
-
-// =============================================
-// SHOW / HIDE KEY
-// =============================================
-
-toggleKeyBtn.addEventListener(
-    "click",
-    () => {
-
-        if(
-            apiKeyInput.type
-            ===
-            "password"
-        ){
-
-            apiKeyInput.type =
-                "text";
-
-            toggleKeyBtn.textContent =
-                "🙈";
-
-        }
-
-        else{
-
-            apiKeyInput.type =
-                "password";
-
-            toggleKeyBtn.textContent =
-                "👁";
-
-        }
-
-    }
-);
-
-
-// =============================================
+// ======================================================
 // TEXT COUNTER
-// =============================================
+// ======================================================
+
 
 voiceText.addEventListener(
     "input",
@@ -795,9 +926,10 @@ function updateCharacterCount(){
 }
 
 
-// =============================================
-// VOLUME
-// =============================================
+// ======================================================
+// PLAYER VOLUME
+// ======================================================
+
 
 volumeSlider.addEventListener(
     "input",
@@ -823,87 +955,108 @@ function updateVolume(){
 }
 
 
-// =============================================
+// ======================================================
 // EMOTION PROMPTS
-// =============================================
+// ======================================================
+
 
 const EMOTIONS = {
 
     natural:
-        "Speak naturally, clearly, and smoothly.",
+        "Speak naturally, clearly, smoothly, and conversationally.",
+
 
     happy:
-        "Speak in a happy, cheerful, warm and positive tone.",
+        "Speak in a happy, cheerful, warm, positive, and energetic tone.",
+
 
     excited:
-        "Speak with strong excitement, energy and enthusiasm.",
+        "Speak with strong excitement, enthusiasm, energy, and expressive delivery.",
+
 
     calm:
-        "Speak calmly, softly and peacefully.",
+        "Speak calmly, gently, softly, peacefully, and naturally.",
+
 
     serious:
-        "Speak in a serious, confident and focused tone.",
+        "Speak in a serious, confident, focused, and professional tone.",
+
 
     dramatic:
-        "Speak dramatically like a cinematic narrator, with expressive delivery.",
+        "Speak dramatically like a cinematic narrator with emotional and expressive delivery.",
+
 
     sad:
-        "Speak with a sad, emotional and gentle tone.",
+        "Speak in a sad, emotional, gentle, and heartfelt tone.",
+
 
     angry:
-        "Speak with controlled anger and intensity while keeping the words clear.",
+        "Speak with controlled anger, intensity, and strong emotion while keeping every word clear.",
+
 
     friendly:
-        "Speak in a friendly, welcoming and conversational tone.",
+        "Speak in a friendly, warm, welcoming, and conversational tone.",
+
 
     news:
-        "Speak clearly and professionally like a television news narrator.",
+        "Speak clearly, professionally, confidently, and evenly like a television news narrator.",
+
 
     story:
-        "Speak like an engaging professional storyteller with expressive pacing.",
+        "Speak like an engaging professional storyteller with expressive pacing and natural emotion.",
+
 
     whisper:
-        "Speak softly in a gentle whisper while remaining understandable."
+        "Speak softly in a gentle whisper while keeping every word understandable."
 
 };
 
 
-// =============================================
-// PACE PROMPTS
-// =============================================
+// ======================================================
+// SPEED / PACE PROMPTS
+// ======================================================
+
 
 const PACES = {
 
     "0.5":
-        "Speak at a very slow, relaxed pace.",
+        "Speak at a very slow and relaxed pace.",
+
 
     "0.75":
         "Speak slowly and clearly.",
 
+
     "1":
         "Speak at a natural normal pace.",
 
+
     "1.25":
-        "Speak slightly faster than normal while staying natural.",
+        "Speak slightly faster than normal while remaining natural.",
+
 
     "1.5":
-        "Speak at a fast and energetic pace while remaining clear.",
+        "Speak at a fast and energetic pace while keeping every word clear.",
+
 
     "2":
-        "Speak very quickly while keeping every word understandable.",
+        "Speak very quickly while keeping the speech understandable.",
+
 
     "3":
         "Speak at an extremely fast pace while preserving clear pronunciation.",
 
+
     "4":
-        "Speak as fast as naturally possible while keeping the speech understandable."
+        "Speak as fast as naturally possible while keeping the words understandable."
 
 };
 
 
-// =============================================
+// ======================================================
 // GENERATE VOICE
-// =============================================
+// ======================================================
+
 
 generateBtn.addEventListener(
     "click",
@@ -916,70 +1069,105 @@ async function generateVoice(){
     const key =
         apiKeyInput.value.trim();
 
+
     const text =
         voiceText.value.trim();
+
 
     const voice =
         voiceSelect.value;
 
+
     const emotion =
         emotionSelect.value;
+
 
     const speed =
         speedSelect.value;
 
 
-    // VALIDATION
+
+    // =========================
+    // CHECK API KEY
+    // =========================
 
     if(!key){
 
         resetStatus();
 
-        setProcessStatus(
-            "Gemini API Key မရှိပါ။",
+
+        setKeyStatus(
+            "Missing",
             "error"
         );
 
+
+        showError(
+            "Gemini API Key မထည့်ရသေးပါ။"
+        );
+
+
         addLog(
-            "❌ API Key ထည့်ရန်လိုအပ်ပါသည်။",
+            "❌ API Key missing.",
             "error"
         );
+
 
         return;
 
     }
 
+
+
+    // =========================
+    // CHECK VOICE
+    // =========================
 
     if(!voice){
 
-        setProcessStatus(
-            "Voice ရွေးချယ်ပါ။",
-            "error"
+        resetStatus();
+
+
+        showError(
+            "Gemini Voice တစ်ခုရွေးပါ။"
         );
+
 
         return;
 
     }
 
 
+
+    // =========================
+    // CHECK TEXT
+    // =========================
+
     if(!text){
 
-        setProcessStatus(
-            "အသံထုတ်ရန် စာသားထည့်ပါ။",
-            "error"
+        resetStatus();
+
+
+        showError(
+            "အသံထုတ်ရန် စာသားမထည့်ရသေးပါ။"
         );
+
 
         addLog(
             "❌ Voice Script is empty.",
             "error"
         );
 
+
         return;
 
     }
 
 
-    // RESET OUTPUT
+
+    // =========================
+    // PREPARE UI
+    // =========================
 
     audioOutput.classList.add(
         "hidden"
@@ -1007,39 +1195,58 @@ async function generateVoice(){
     );
 
 
-    // STEP 1
-
-    setProgress(
-        10,
-        "Input စစ်ဆေးနေပါသည်..."
-    );
-
-
-    addLog(
-        "✅ API Key detected.",
-        "success"
-    );
-
-
-    addLog(
-        `✅ Voice selected: ${voice}`,
-        "success"
-    );
-
-
-    addLog(
-        `✅ Script received: ${text.length.toLocaleString()} characters`,
-        "success"
-    );
-
 
     try{
 
-        // STEP 2
+
+        // =========================
+        // STEP 1
+        // =========================
 
         setProgress(
-            25,
-            "Gemini TTS Request ပြင်ဆင်နေပါသည်..."
+            10,
+            "Input Data စစ်ဆေးနေပါသည်..."
+        );
+
+
+        addLog(
+            "✅ API Key detected.",
+            "success"
+        );
+
+
+        addLog(
+            `✅ Voice: ${voice}`,
+            "success"
+        );
+
+
+        addLog(
+            `✅ Emotion: ${emotion}`,
+            "success"
+        );
+
+
+        addLog(
+            `✅ Speed: ${speed}x`,
+            "success"
+        );
+
+
+        addLog(
+            `✅ Text received: ${text.length.toLocaleString()} characters`,
+            "success"
+        );
+
+
+
+        // =========================
+        // STEP 2
+        // =========================
+
+        setProgress(
+            22,
+            "Gemini TTS Prompt ပြင်ဆင်နေပါသည်..."
         );
 
 
@@ -1051,56 +1258,78 @@ async function generateVoice(){
             );
 
 
+
+        // =========================
         // STEP 3
+        // =========================
 
         setProgress(
-            40,
-            "Gemini AI ကို Request ပို့နေပါသည်..."
+            38,
+            "Google Gemini AI ကို Request ပို့နေပါသည်..."
         );
 
 
         addLog(
-            "⏳ Sending request to Gemini TTS...",
+            "⏳ Sending TTS request...",
             "info"
         );
 
 
+
         const response =
             await fetch(
+
                 `${API_BASE}/models/${MODEL}:generateContent`,
+
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
+
 
                     headers: {
 
                         "Content-Type":
                             "application/json",
 
+
                         "x-goog-api-key":
                             key
 
                     },
 
+
                     body:
                         JSON.stringify({
 
                             contents: [
+
                                 {
+
                                     parts: [
+
                                         {
+
                                             text:
                                                 prompt
+
                                         }
+
                                     ]
+
                                 }
+
                             ],
+
 
                             generationConfig: {
 
                                 responseModalities: [
+
                                     "AUDIO"
+
                                 ],
+
 
                                 speechConfig: {
 
@@ -1122,12 +1351,18 @@ async function generateVoice(){
                         })
 
                 }
+
             );
 
 
-        // API ERROR
 
-        if(!response.ok){
+        // =========================
+        // API HTTP ERROR
+        // =========================
+
+        if(
+            !response.ok
+        ){
 
             throw await createApiError(
                 response
@@ -1136,11 +1371,14 @@ async function generateVoice(){
         }
 
 
+
+        // =========================
         // STEP 4
+        // =========================
 
         setProgress(
-            65,
-            "Gemini Audio Response ရရှိပါပြီ..."
+            60,
+            "Gemini က Audio Generate လုပ်ပြီးပါပြီ..."
         );
 
 
@@ -1154,17 +1392,29 @@ async function generateVoice(){
             await response.json();
 
 
-        const audioPart =
+
+        // =========================
+        // FIND AUDIO
+        // =========================
+
+        const parts =
             data
             ?.candidates
             ?.[0]
             ?.content
             ?.parts
-            ?.find(
+            ||
+            [];
+
+
+        const audioPart =
+            parts.find(
                 part =>
-                    part.inlineData
+                    part
+                    ?.inlineData
                     ?.data
             );
+
 
 
         if(
@@ -1175,53 +1425,86 @@ async function generateVoice(){
             !audioPart.inlineData.data
         ){
 
+            let finishReason =
+
+                data
+                ?.candidates
+                ?.[0]
+                ?.finishReason
+                ||
+                "Unknown";
+
+
             throw new Error(
-                "Gemini က Audio Data ပြန်မပေးပါ။ Response မှာ audio output မတွေ့ပါ။"
+
+                `Gemini က Audio Data ပြန်မပေးပါ။ Finish Reason: ${finishReason}`
+
             );
 
         }
 
 
+
+        // =========================
         // STEP 5
+        // =========================
 
         setProgress(
-            78,
-            "Audio Data ပြောင်းနေပါသည်..."
+            74,
+            "Audio Data ကို Browser Player အတွက် ပြောင်းနေပါသည်..."
         );
 
 
         const pcmBytes =
             base64ToUint8Array(
+
                 audioPart.inlineData.data
+
             );
 
 
+
         if(
-            pcmBytes.length === 0
+            pcmBytes.length
+            ===
+            0
         ){
 
             throw new Error(
-                "Audio Data is empty."
+                "Gemini Audio Data က Empty ဖြစ်နေပါသည်။"
             );
 
         }
 
 
-        // Gemini TTS PCM:
-        // 24kHz / mono / 16-bit
+
+        // Gemini PCM
+        // 24kHz
+        // Mono
+        // 16-bit
 
         const wavBlob =
             createWavBlob(
+
                 pcmBytes,
+
                 24000,
+
                 1,
+
                 16
+
             );
 
 
-        // REMOVE OLD URL
 
-        if(currentAudioURL){
+        // =========================
+        // REMOVE OLD AUDIO URL
+        // =========================
+
+        if(
+            currentAudioURL
+        ){
 
             URL.revokeObjectURL(
                 currentAudioURL
@@ -1230,16 +1513,24 @@ async function generateVoice(){
         }
 
 
+
+        // =========================
+        // NEW AUDIO URL
+        // =========================
+
         currentAudioURL =
             URL.createObjectURL(
                 wavBlob
             );
 
 
+
+        // =========================
         // STEP 6
+        // =========================
 
         setProgress(
-            90,
+            86,
             "Audio Player ပြင်ဆင်နေပါသည်..."
         );
 
@@ -1254,21 +1545,34 @@ async function generateVoice(){
             ) / 100;
 
 
+        audioPlayer.playbackRate =
+            1;
+
+
         audioPlayer.load();
 
+
+
+        // =========================
+        // OUTPUT INFO
+        // =========================
 
         outputVoice.textContent =
             voice;
 
 
         outputEmotion.textContent =
+
             emotionSelect
             .selectedOptions[0]
             .textContent
             .trim();
 
 
+
+        // =========================
         // DOWNLOAD
+        // =========================
 
         downloadBtn.href =
             currentAudioURL;
@@ -1280,14 +1584,26 @@ async function generateVoice(){
             );
 
 
-        // SHOW OUTPUT
+
+        // =========================
+        // SHOW AUDIO
+        // =========================
 
         audioOutput.classList.remove(
             "hidden"
         );
 
 
-        // WAVEFORM
+
+        // =========================
+        // DRAW WAVE
+        // =========================
+
+        setProgress(
+            94,
+            "Waveform ဖန်တီးနေပါသည်..."
+        );
+
 
         requestAnimationFrame(
             () => {
@@ -1300,11 +1616,14 @@ async function generateVoice(){
         );
 
 
+
+        // =========================
         // COMPLETE
+        // =========================
 
         setProgress(
             100,
-            "Voice Generation ပြီးဆုံးပါပြီ 🎉"
+            "✅ Voice Generation ပြီးဆုံးပါပြီ။"
         );
 
 
@@ -1327,26 +1646,35 @@ async function generateVoice(){
 
 
         addLog(
-            "🎧 Audio is ready to play.",
+            "🎧 Audio Player Ready.",
             "success"
         );
 
 
         addLog(
-            "⬇️ Download button is ready.",
+            "🌊 Waveform Ready.",
+            "success"
+        );
+
+
+        addLog(
+            "⬇️ Download Ready.",
             "success"
         );
 
 
         audioOutput.scrollIntoView({
 
-            behavior: "smooth",
+            behavior:
+                "smooth",
 
-            block: "nearest"
+            block:
+                "nearest"
 
         });
 
     }
+
 
     catch(error){
 
@@ -1355,6 +1683,7 @@ async function generateVoice(){
         );
 
     }
+
 
     finally{
 
@@ -1374,9 +1703,10 @@ async function generateVoice(){
 }
 
 
-// =============================================
-// BUILD GEMINI PROMPT
-// =============================================
+// ======================================================
+// BUILD GEMINI TTS PROMPT
+// ======================================================
+
 
 function buildPrompt(
     text,
@@ -1385,52 +1715,79 @@ function buildPrompt(
 ){
 
     const emotionPrompt =
-        EMOTIONS[emotion]
+
+        EMOTIONS[
+            emotion
+        ]
+
         ||
+
         EMOTIONS.natural;
 
 
     const pacePrompt =
-        PACES[speed]
+
+        PACES[
+            speed
+        ]
+
         ||
+
         PACES["1"];
 
 
     return `
+
+# AUDIO PROFILE
+
+Use the selected Gemini voice naturally.
+
 # DIRECTOR'S NOTES
 
-Style:
+Emotion and style:
 ${emotionPrompt}
 
 Pacing:
 ${pacePrompt}
 
-Instructions:
+# IMPORTANT INSTRUCTIONS
+
 Read the transcript exactly as written.
-Do not translate it.
+
+Do not translate the transcript.
+
 Do not summarize it.
-Do not add new words.
-Do not remove words.
-Keep pronunciation natural and expressive.
+
+Do not add new sentences.
+
+Do not remove sentences.
+
+Keep pronunciation clear and natural.
+
+Maintain the requested emotion and pacing.
 
 # TRANSCRIPT
 
 ${text}
+
 `.trim();
 
 }
 
 
-// =============================================
-// BASE64 -> UINT8
-// =============================================
+// ======================================================
+// BASE64 AUDIO -> UINT8 ARRAY
+// ======================================================
+
 
 function base64ToUint8Array(
     base64
 ){
 
     const binary =
-        atob(base64);
+        atob(
+            base64
+        );
 
 
     const bytes =
@@ -1446,7 +1803,9 @@ function base64ToUint8Array(
     ){
 
         bytes[i] =
-            binary.charCodeAt(i);
+            binary.charCodeAt(
+                i
+            );
 
     }
 
@@ -1456,9 +1815,10 @@ function base64ToUint8Array(
 }
 
 
-// =============================================
+// ======================================================
 // PCM -> WAV
-// =============================================
+// ======================================================
+
 
 function createWavBlob(
     pcmBytes,
@@ -1473,9 +1833,11 @@ function createWavBlob(
 
     const buffer =
         new ArrayBuffer(
+
             headerSize
             +
             pcmBytes.length
+
         );
 
 
@@ -1503,8 +1865,13 @@ function createWavBlob(
         ){
 
             view.setUint8(
+
                 offset + i,
-                string.charCodeAt(i)
+
+                string.charCodeAt(
+                    i
+                )
+
             );
 
         }
@@ -1512,7 +1879,9 @@ function createWavBlob(
     }
 
 
+
     const blockAlign =
+
         channels
         *
         bitsPerSample
@@ -1521,12 +1890,14 @@ function createWavBlob(
 
 
     const byteRate =
+
         sampleRate
         *
         blockAlign;
 
 
-    // RIFF
+
+    // RIFF HEADER
 
     writeString(
         0,
@@ -1535,9 +1906,15 @@ function createWavBlob(
 
 
     view.setUint32(
+
         4,
-        36 + pcmBytes.length,
+
+        36
+        +
+        pcmBytes.length,
+
         true
+
     );
 
 
@@ -1547,7 +1924,7 @@ function createWavBlob(
     );
 
 
-    // fmt
+    // FORMAT
 
     writeString(
         12,
@@ -1604,7 +1981,7 @@ function createWavBlob(
     );
 
 
-    // data
+    // AUDIO DATA
 
     writeString(
         36,
@@ -1613,9 +1990,13 @@ function createWavBlob(
 
 
     view.setUint32(
+
         40,
+
         pcmBytes.length,
+
         true
+
     );
 
 
@@ -1626,19 +2007,27 @@ function createWavBlob(
 
 
     return new Blob(
-        [buffer],
+
+        [
+            buffer
+        ],
+
         {
+
             type:
                 "audio/wav"
+
         }
+
     );
 
 }
 
 
-// =============================================
-// WAVEFORM
-// =============================================
+// ======================================================
+// DRAW WAVEFORM
+// ======================================================
+
 
 function drawWaveform(
     pcmBytes
@@ -1665,11 +2054,15 @@ function drawWaveform(
 
 
     waveform.width =
-        width * ratio;
+        width
+        *
+        ratio;
 
 
     waveform.height =
-        height * ratio;
+        height
+        *
+        ratio;
 
 
     ctx.scale(
@@ -1694,7 +2087,11 @@ function drawWaveform(
             pcmBytes.byteOffset,
 
             Math.floor(
-                pcmBytes.byteLength / 2
+
+                pcmBytes.byteLength
+                /
+                2
+
             )
 
         );
@@ -1705,45 +2102,64 @@ function drawWaveform(
 
 
     const bars =
+
         Math.max(
+
             40,
+
             Math.min(
-                100,
+
+                110,
+
                 Math.floor(
                     width / 5
                 )
+
             )
+
         );
 
 
     const step =
+
         Math.max(
+
             1,
+
             Math.floor(
+
                 samples.length
                 /
                 bars
+
             )
+
         );
 
 
     const barWidth =
+
         Math.max(
+
             2,
+
             width
             /
             bars
             -
             2
+
         );
 
 
     const gradient =
         ctx.createLinearGradient(
+
             0,
             0,
             width,
             0
+
         );
 
 
@@ -1763,6 +2179,7 @@ function drawWaveform(
         gradient;
 
 
+
     for(
         let i = 0;
         i < bars;
@@ -1778,9 +2195,15 @@ function drawWaveform(
 
 
         const end =
+
             Math.min(
-                start + step,
+
+                start
+                +
+                step,
+
                 samples.length
+
             );
 
 
@@ -1791,12 +2214,15 @@ function drawWaveform(
         ){
 
             const value =
+
                 Math.abs(
                     samples[j]
                 );
 
 
-            if(value > max){
+            if(
+                value > max
+            ){
 
                 max =
                     value;
@@ -1811,25 +2237,33 @@ function drawWaveform(
 
 
         const barHeight =
+
             Math.max(
+
                 4,
+
                 normalized
                 *
                 height
                 *
                 .82
+
             );
 
 
         const x =
+
             i
             *
             (
-                width / bars
+                width
+                /
+                bars
             );
 
 
         const y =
+
             center
             -
             barHeight
@@ -1847,11 +2281,13 @@ function drawWaveform(
         ){
 
             ctx.roundRect(
+
                 x,
                 y,
                 barWidth,
                 barHeight,
                 3
+
             );
 
         }
@@ -1859,10 +2295,12 @@ function drawWaveform(
         else{
 
             ctx.rect(
+
                 x,
                 y,
                 barWidth,
                 barHeight
+
             );
 
         }
@@ -1875,15 +2313,17 @@ function drawWaveform(
 }
 
 
-// =============================================
-// API ERROR
-// =============================================
+// ======================================================
+// CREATE API ERROR
+// ======================================================
+
 
 async function createApiError(
     response
 ){
 
-    let apiMessage = "";
+    let apiMessage =
+        "";
 
 
     try{
@@ -1893,15 +2333,18 @@ async function createApiError(
 
 
         apiMessage =
+
             errorData
             ?.error
             ?.message
+
             ||
+
             "";
 
     }
 
-    catch{
+    catch(error){
 
         apiMessage =
             response.statusText;
@@ -1910,51 +2353,57 @@ async function createApiError(
 
 
     let friendlyMessage =
-        "Gemini API Error";
+        "Gemini API Error ဖြစ်နေပါသည်။";
 
 
     switch(
         response.status
     ){
 
+
         case 400:
 
             friendlyMessage =
-                "Request မှားနေပါသည် သို့မဟုတ် Voice / Model Setting မမှန်ပါ။";
+                "Request Setting မမှန်ပါ သို့မဟုတ် Voice / Model Request Error ဖြစ်နေပါသည်။";
 
             break;
+
 
 
         case 401:
 
             friendlyMessage =
-                "API Key Authentication မအောင်မြင်ပါ။";
+                "API Key Authentication မအောင်မြင်ပါ။ API Key ကိုစစ်ပါ။";
 
             break;
+
 
 
         case 403:
 
             friendlyMessage =
-                "API Key Permission မရှိပါ သို့မဟုတ် API အသုံးပြုခွင့်ပိတ်ထားပါသည်။";
+                "ဒီ API Key မှာ Gemini API Permission မရှိပါ သို့မဟုတ် Access ပိတ်ထားပါသည်။";
 
             break;
+
 
 
         case 404:
 
             friendlyMessage =
-                "Gemini Model ကို မတွေ့ပါ။";
+                "Gemini TTS Model ကို မတွေ့ပါ။";
 
             break;
+
 
 
         case 429:
 
             friendlyMessage =
-                "Rate Limit / Quota ပြည့်နေပါသည်။ ခဏနေရင် ပြန်စမ်းပါ။";
+                "Gemini API Quota / Rate Limit ပြည့်နေပါသည်။";
 
             break;
+
 
 
         case 500:
@@ -1964,7 +2413,7 @@ async function createApiError(
         case 503:
 
             friendlyMessage =
-                "Google Gemini Server ဘက်မှာ ယာယီပြဿနာဖြစ်နေပါသည်။";
+                "Google Gemini Server ဘက်မှာ ယာယီ Error ဖြစ်နေပါသည်။";
 
             break;
 
@@ -1973,11 +2422,17 @@ async function createApiError(
 
     const error =
         new Error(
+
             apiMessage
-            ?
+
+                ?
+
             `${friendlyMessage} ${apiMessage}`
-            :
+
+                :
+
             friendlyMessage
+
         );
 
 
@@ -1990,35 +2445,28 @@ async function createApiError(
 }
 
 
-// =============================================
-// GLOBAL ERROR HANDLER
-// =============================================
+// ======================================================
+// ERROR HANDLER
+// ======================================================
+
 
 function handleError(
     error
 ){
 
     console.error(
+        "VOICE ERROR:",
         error
-    );
-
-
-    setProgress(
-        100,
-        "Voice Generation မအောင်မြင်ပါ။"
-    );
-
-
-    setProcessBadge(
-        "Error",
-        "error"
     );
 
 
     let message =
+
         error
         ?.message
+
         ||
+
         "Unknown Error";
 
 
@@ -2030,6 +2478,18 @@ function handleError(
             "Network Error ဖြစ်နိုင်ပါသည်။ Internet Connection သို့မဟုတ် Browser Request ကိုစစ်ပါ။";
 
     }
+
+
+    setProgress(
+        100,
+        "❌ Voice Generation မအောင်မြင်ပါ။"
+    );
+
+
+    setProcessBadge(
+        "Error",
+        "error"
+    );
 
 
     statusHeadline.textContent =
@@ -2044,9 +2504,37 @@ function handleError(
 }
 
 
-// =============================================
-// STATUS HELPERS
-// =============================================
+// ======================================================
+// SIMPLE ERROR
+// ======================================================
+
+
+function showError(
+    message
+){
+
+    setProcessBadge(
+        "Error",
+        "error"
+    );
+
+
+    statusHeadline.textContent =
+        `❌ ${message}`;
+
+
+    addLog(
+        `❌ ${message}`,
+        "error"
+    );
+
+}
+
+
+// ======================================================
+// RESET STATUS
+// ======================================================
+
 
 function resetStatus(){
 
@@ -2054,12 +2542,12 @@ function resetStatus(){
         "0%";
 
 
+    statusHeadline.textContent =
+        "Generate Voice နှိပ်ရန် အသင့်ဖြစ်နေပါပြီ။";
+
+
     statusLog.innerHTML =
         "";
-
-
-    statusHeadline.textContent =
-        "Processing စတင်ရန် အသင့်ဖြစ်နေပါပြီ။";
 
 
     setProcessBadge(
@@ -2067,7 +2555,18 @@ function resetStatus(){
         "neutral"
     );
 
+
+    addLog(
+        "ℹ️ System Ready",
+        "info"
+    );
+
 }
+
+
+// ======================================================
+// PROGRESS
+// ======================================================
 
 
 function setProgress(
@@ -2085,23 +2584,57 @@ function setProgress(
 }
 
 
+// ======================================================
+// PROCESS STATUS
+// ======================================================
+
+
 function setProcessStatus(
     message,
-    type
+    type = "info"
 ){
 
     statusHeadline.textContent =
         message;
 
 
-    setProcessBadge(
+    if(
+        type === "success"
+    ){
+
+        setProcessBadge(
+            "Ready",
+            "success"
+        );
+
+    }
+
+    else if(
         type === "error"
-            ? "Error"
-            : "Ready",
-        type
-    );
+    ){
+
+        setProcessBadge(
+            "Error",
+            "error"
+        );
+
+    }
+
+    else{
+
+        setProcessBadge(
+            "Ready",
+            "neutral"
+        );
+
+    }
 
 }
+
+
+// ======================================================
+// PROCESS BADGE
+// ======================================================
 
 
 function setProcessBadge(
@@ -2119,6 +2652,11 @@ function setProcessBadge(
 }
 
 
+// ======================================================
+// KEY BADGE
+// ======================================================
+
+
 function setKeyStatus(
     text,
     type
@@ -2132,6 +2670,11 @@ function setKeyStatus(
         `status-badge ${type}`;
 
 }
+
+
+// ======================================================
+// ADD PROCESS LOG
+// ======================================================
 
 
 function addLog(
@@ -2149,14 +2692,18 @@ function addLog(
         text;
 
 
-    if(type === "success"){
+    if(
+        type === "success"
+    ){
 
         item.className =
             "success-log";
 
     }
 
-    else if(type === "error"){
+    else if(
+        type === "error"
+    ){
 
         item.className =
             "error-log";
@@ -2178,9 +2725,10 @@ function addLog(
 }
 
 
-// =============================================
+// ======================================================
 // DOWNLOAD FILE NAME
-// =============================================
+// ======================================================
+
 
 function createFileName(
     voice
@@ -2191,6 +2739,7 @@ function createFileName(
 
 
     const date =
+
         now
         .toISOString()
         .slice(
@@ -2204,7 +2753,9 @@ function createFileName(
 
 
     return (
+
         `Gemini-${voice}-${date}.wav`
+
     );
 
 }
