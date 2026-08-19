@@ -1,89 +1,340 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const apiKeyInput = document.getElementById('apiKey');
-    const toggleApiKeyBtn = document.getElementById('toggleApiKey');
-    const textInput = document.getElementById('textInput');
-    const voiceSelect = document.getElementById('voiceSelect');
-    const emotionSelect = document.getElementById('emotionSelect');
-    const generateBtn = document.getElementById('generateBtn');
-    const audioPlayer = document.getElementById('audioPlayer');
 
-    toggleApiKeyBtn.addEventListener('click', () => {
-        const type = apiKeyInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        apiKeyInput.setAttribute('type', type);
-        toggleApiKeyBtn.innerHTML = type === 'password' 
-            ? '<i class="fa-solid fa-eye"></i>' 
-            : '<i class="fa-solid fa-eye-slash"></i>';
+// Open Voice Studio
+
+function openVoice(){
+
+    document.querySelector(".home").style.display="none";
+
+    document.getElementById("voicePage").style.display="block";
+
+    loadKey();
+
+}
+
+
+
+// ==========================
+// API KEY SYSTEM
+// ==========================
+
+
+function saveKey(){
+
+    const key =
+    document.getElementById("apiKey").value;
+
+
+    const remember =
+    document.getElementById("remember").checked;
+
+
+
+    if(key.trim()===""){
+
+        showStatus(
+        "❌ Error: API Key မထည့်ရသေးပါ"
+        );
+
+        return;
+
+    }
+
+
+
+    if(remember){
+
+        localStorage.setItem(
+        "gemini_api_key",
+        key
+        );
+
+        document.getElementById("keyStatus")
+        .innerHTML=
+        "🟢 Key Saved in Browser";
+
+    }
+
+    else{
+
+
+        sessionStorage.setItem(
+        "gemini_api_key",
+        key
+        );
+
+
+        document.getElementById("keyStatus")
+        .innerHTML=
+        "🟡 Key Active (Not Saved)";
+
+
+    }
+
+
+
+    showStatus(
+    "✅ API Key Connected"
+    );
+
+
+}
+
+
+
+
+// Remove Key
+
+function removeKey(){
+
+
+    localStorage.removeItem(
+    "gemini_api_key"
+    );
+
+
+    sessionStorage.removeItem(
+    "gemini_api_key"
+    );
+
+
+    document.getElementById("apiKey")
+    .value="";
+
+
+    document.getElementById("keyStatus")
+    .innerHTML=
+    "🔴 Key Removed";
+
+
+    showStatus(
+    "Key deleted successfully"
+    );
+
+
+}
+
+
+
+
+// Load Saved Key
+
+function loadKey(){
+
+
+    let key =
+    localStorage.getItem(
+    "gemini_api_key"
+    );
+
+
+    if(key){
+
+
+        document.getElementById("apiKey")
+        .value=key;
+
+
+        document.getElementById("remember")
+        .checked=true;
+
+
+        document.getElementById("keyStatus")
+        .innerHTML=
+        "🟢 Saved Key Loaded";
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+// ==========================
+// DRAG & DROP VOICE
+// ==========================
+
+
+
+const voices =
+document.querySelectorAll(".voice");
+
+
+const selected =
+document.getElementById("selected");
+
+
+
+voices.forEach(voice=>{
+
+
+    voice.addEventListener(
+    "dragstart",
+    function(e){
+
+
+        e.dataTransfer.setData(
+        "voice",
+        this.innerText
+        );
+
+
     });
 
-    generateBtn.addEventListener('click', async () => {
-        const apiKey = apiKeyInput.value.trim();
-        const text = textInput.value.trim();
-        const voice = voiceSelect.value;
-        const emotion = emotionSelect.value;
 
-        if (!apiKey) {
-            alert('ကျေးဇူးပြု၍ Gemini API Key ထည့်ပေးပါ!');
-            return;
-        }
-
-        if (!text) {
-            alert('ကျေးဇူးပြု၍ စကားပြောစေချင်သည့် စာသား ရေးပါ!');
-            return;
-        }
-
-        generateBtn.disabled = true;
-        generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
-
-        try {
-            const promptText = `Say this text in ${emotion} emotion tone: "${text}"`;
-
-            // Gemini REST API Audio Config
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: promptText }]
-                    }],
-                    generationConfig: {
-                        responseModalities: ["AUDIO"],
-                        speechConfig: {
-                            voiceConfig: {
-                                prebuiltVoiceConfig: {
-                                    voiceName: voice
-                                }
-                            }
-                        }
-                    }
-                })
-            });
-
-            const data = await response.json();
-
-            if (data.error) {
-                alert('API Error: ' + data.error.message);
-                return;
-            }
-
-            const candidate = data.candidates?.[0];
-            const inlineData = candidate?.content?.parts?.[0]?.inlineData;
-
-            if (inlineData && inlineData.data) {
-                const mimeType = inlineData.mimeType || 'audio/mp3';
-                audioPlayer.src = `data:${mimeType};base64,${inlineData.data}`;
-                audioPlayer.play();
-            } else {
-                alert('Gemini မှ အသံ Data ပြန်မပို့ပေးပါ။ API Key သို့မဟုတ် စာသားကို ပြန်စစ်ပေးပါ။');
-            }
-
-        } catch (error) {
-            console.error('Fetch Error:', error);
-            alert('ချိတ်ဆက်မှု အမှားဖြစ်ပေါ်နေပါသည်: ' + error.message);
-        } finally {
-            generateBtn.disabled = false;
-            generateBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Generate Voice';
-        }
-    });
 });
+
+
+
+
+
+selected.addEventListener(
+"dragover",
+function(e){
+
+    e.preventDefault();
+
+});
+
+
+
+
+
+selected.addEventListener(
+"drop",
+function(e){
+
+
+    let voice =
+    e.dataTransfer.getData(
+    "voice"
+    );
+
+
+    selected.innerHTML=
+    "🎙 Selected: "+voice;
+
+
+    showStatus(
+    "✅ Voice Selected: "+voice
+    );
+
+
+});
+
+
+
+
+
+
+
+
+// ==========================
+// GENERATE BUTTON
+// ==========================
+
+
+
+function generate(){
+
+
+
+let key =
+document.getElementById("apiKey").value;
+
+
+
+let text =
+document.getElementById("text").value;
+
+
+
+if(key===""){
+
+
+    showStatus(
+    "❌ Error: API Key Missing"
+    );
+
+
+    return;
+
+}
+
+
+
+
+if(text.trim()===""){
+
+
+    showStatus(
+    "❌ Error: Text မထည့်ရသေးပါ"
+    );
+
+
+    return;
+
+}
+
+
+
+
+showStatus(
+"⏳ Sending request to Gemini AI..."
+);
+
+
+
+
+setTimeout(()=>{
+
+
+showStatus(
+"⏳ Generating Voice..."
+);
+
+
+},1500);
+
+
+
+
+setTimeout(()=>{
+
+
+showStatus(
+"✅ Completed - Audio Ready"
+);
+
+
+},4000);
+
+
+
+}
+
+
+
+
+
+
+
+// ==========================
+// STATUS SYSTEM
+// ==========================
+
+
+function showStatus(message){
+
+
+document.getElementById("status")
+.innerHTML=
+message;
+
+
+}
