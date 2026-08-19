@@ -1,180 +1,472 @@
-:root {
-    --bg-color: #081225;
-    --card-bg: rgba(15, 28, 54, 0.9);
-    --primary-cyan: #00f0ff;
-    --primary-blue: #0088ff;
-    --text-color: #f1f5f9;
-    --text-dim: #94a3b8;
-    --border-cyan: rgba(0, 240, 255, 0.3);
+*{
+    box-sizing:border-box;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+body{
+
+    margin:0;
+    padding:15px;
+
+    background:
+    radial-gradient(circle at top,#12345c,#050b18 45%);
+
+    color:white;
+
+    font-family:
+    Arial,
+    sans-serif;
+
 }
 
-body {
-    background-color: var(--bg-color);
-    background-image: radial-gradient(circle at 50% 0%, #152a52 0%, #081225 100%);
-    color: var(--text-color);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 12px;
+
+
+/* Promotion */
+
+.promo{
+
+    background:#081d38;
+
+    border:1px solid #00a8ff;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 25px rgba(0,168,255,.5);
+
 }
 
-/* ဖုန်းမျက်နှာပြင် အပြည့် ကွက်တိဖြစ်စေရန် 100% သတ်မှတ်ခြင်း */
-.app-container {
-    width: 100%;
-    max-width: 500px; /* PC ပေါ်မှာ ကြည့်ရင်လည်း အချိုးအစား မပျက်ပါ */
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+
+.promo h3{
+
+    margin:0;
+
+    font-size:18px;
+
 }
 
-header h1 {
-    font-size: 1.4rem;
-    color: var(--primary-cyan);
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-    text-align: center;
-    padding: 5px 0;
+
+.promo p{
+
+    color:#00c8ff;
+
+    font-size:17px;
+
+    font-weight:bold;
+
 }
 
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-cyan);
-    border-radius: 12px;
-    padding: 12px 14px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+
+
+
+/* Home Cards */
+
+.home{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    margin-top:25px;
+
 }
 
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+
+
+.main-card{
+
+    background:
+
+    linear-gradient(
+    145deg,
+    #10294d,
+    #071326
+    );
+
+
+    border-radius:25px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    border:1px solid #007cff;
+
+    box-shadow:
+
+    0 0 20px rgba(0,140,255,.35);
+
+    transition:.3s;
+
 }
 
-@media (max-width: 380px) {
-    .grid-2 {
-        grid-template-columns: 1fr;
+
+
+.main-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 0 35px #008cff;
+
+}
+
+
+
+.main-card h1{
+
+    font-size:55px;
+
+    margin:5px;
+
+}
+
+
+.main-card h2{
+
+    font-size:22px;
+
+}
+
+
+.main-card p{
+
+    color:#b8dfff;
+
+}
+
+
+
+
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:12px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+    90deg,
+    #007cff,
+    #00c8ff
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+
+    box-shadow:
+
+    0 0 15px rgba(0,168,255,.7);
+
+}
+
+
+
+button:active{
+
+    transform:scale(.97);
+
+}
+
+
+
+
+
+/* Page */
+
+
+.page{
+
+    display:none;
+
+    margin-top:25px;
+
+}
+
+
+
+.page h2{
+
+    text-align:center;
+
+}
+
+
+
+
+
+.section{
+
+    background:#0b1d38;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border:1px solid #164b83;
+
+
+}
+
+
+
+
+
+input,
+textarea{
+
+
+    width:100%;
+
+    padding:15px;
+
+
+    margin-top:10px;
+
+
+    background:#050f20;
+
+    color:white;
+
+
+    border:
+
+    1px solid #008cff;
+
+
+    border-radius:15px;
+
+
+    font-size:16px;
+
+
+}
+
+
+
+textarea{
+
+    height:160px;
+
+    resize:none;
+
+}
+
+
+
+
+
+/* Voice List */
+
+
+#voices{
+
+    display:flex;
+
+    gap:12px;
+
+    overflow-x:auto;
+
+    padding:10px 0;
+
+}
+
+
+
+.voice{
+
+    min-width:120px;
+
+    padding:18px 10px;
+
+
+    background:#112d55;
+
+
+    border-radius:18px;
+
+
+    text-align:center;
+
+
+    border:
+
+    1px solid #009cff;
+
+
+    cursor:grab;
+
+
+}
+
+
+
+.voice:active{
+
+    opacity:.6;
+
+}
+
+
+
+
+
+#selected{
+
+
+    height:90px;
+
+
+    margin-top:15px;
+
+
+    border:
+
+    2px dashed #00c8ff;
+
+
+    border-radius:20px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    color:#8bdcff;
+
+
+    background:#061329;
+
+
+}
+
+
+
+
+
+/* Status */
+
+
+.status{
+
+
+    background:#061329;
+
+
+    border-radius:20px;
+
+
+    padding:20px;
+
+
+    border:1px solid #00a8ff;
+
+
+}
+
+
+
+#status{
+
+
+    color:#00d9ff;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    color:#b9dcff;
+
+}
+
+
+
+input[type="checkbox"]{
+
+    width:20px;
+
+    height:20px;
+
+}
+
+
+
+
+
+
+
+/* Desktop */
+
+@media(min-width:700px){
+
+
+body{
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+
+
+.home{
+
+    flex-direction:row;
+
+}
+
+
+
+.main-card{
+
+    flex:1;
+
+}
+
+
+
     }
-}
-
-label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--primary-cyan);
-    margin-bottom: 6px;
-}
-
-.input-group {
-    display: flex;
-    gap: 6px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    background: #040a17;
-    border: 1px solid var(--border-cyan);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 0.9rem;
-    outline: none;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: var(--primary-cyan);
-    box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-}
-
-select optgroup {
-    background: #081225;
-    color: var(--primary-cyan);
-}
-
-#toggleApiKey {
-    width: 40px;
-    background: rgba(0, 240, 255, 0.15);
-    border: 1px solid var(--border-cyan);
-    color: var(--primary-cyan);
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.api-link {
-    display: inline-block;
-    margin-top: 6px;
-    color: #38bdf8;
-    font-size: 0.75rem;
-    text-decoration: none;
-}
-
-textarea {
-    resize: none;
-}
-
-.btn-primary {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-blue));
-    border: none;
-    border-radius: 8px;
-    color: #040a17;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
-}
-
-.btn-primary:active {
-    transform: scale(0.98);
-}
-
-.result-card audio {
-    width: 100%;
-    margin-top: 5px;
-    height: 40px;
-}
-
-.telegram-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, rgba(0, 136, 204, 0.2), rgba(15, 28, 54, 0.9));
-    border-color: rgba(0, 136, 204, 0.4);
-}
-
-.telegram-icon {
-    font-size: 1.8rem;
-    color: #0088cc;
-}
-
-.telegram-info span {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-}
-
-.telegram-info a {
-    color: #38bdf8;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-decoration: none;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-}
-
-footer span {
-    color: var(--primary-cyan);
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-}
